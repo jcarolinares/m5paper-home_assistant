@@ -1,17 +1,14 @@
 #include <WiFi.h>
 #include <PubSubClient.h>
 #include <M5EPD.h>
-#include <SD.h>
-#include <FS.h>
 
 // Configuration file
 #include "config.h"
 #include "arduino_secrets.h" // You need to create this file by yourself with const char* ssid const char* password
 
 // Task lists
-// TODO UPLOAD CODE ONCE IS CREDENTIALS SAFE
 // TODO Add Battery Status
-// TODO Add block mode
+// TODO Add lock mode
 // End of task lists
 
 const char* mqtt_server = "192.168.1.33"; // Home Assistant IP address
@@ -25,7 +22,7 @@ PubSubClient client(espClient);
 // Initialize M5Paper
 M5EPD_Canvas canvas(&M5.EPD);
 
-int point[2][2];
+int point[2][2]; // Touch point matrix
 
 void setup() {
 
@@ -45,61 +42,18 @@ void setup() {
 
   canvas.createCanvas(540, 960);
 
-
-  // // Buttons coordinates definition matrix // FIXME lot of problems
-  // define_buttons_matrix();
-
-  // for (int i=0; i<3; i++){
-  //   for (int j=0; i<4; j++){
-  //     Serial.println(buttons_matrix_coordinates[i][j]);
-  //   }
-  // }
-
   // Background image
   canvas.drawPngFile(SD, "/home-assistant.png",0,0); // the / is CRUTIAL
   canvas.setTextSize(5);
   canvas.drawString("Home Control", 20, 10); // Tittle
   
-
-  // Autobutton text fill
+  // Button text autofill. Go to config.h to change the button names inside "button_names"
   canvas.setTextSize(4);
   for (int row=0; row<9; row++){
     for (int col=0; col<3; col++){
       canvas.drawString(buttons_names[row][col], 1+col*button_width+((button_width-(buttons_names[row][col].length()*24))/2), row*95+95); // 6 letter at size 4 are the max
     }
   }
-
-
-  // // Button lights
-  // // canvas.drawRect(100, 100, 350, 150, 0xFFFF);
-  // canvas.setTextSize(4);
-  // canvas.drawString(buttons_names[0][0], 25, 95);
-  
-  // // Button camera
-  // // canvas.drawRect(100, 350, 350, 150, 0xFFFF);
-  // canvas.setTextSize(4);
-  // canvas.drawString(buttons_names[0][1], 1+1*button_width+((button_width-(buttons_names[0][1].length()*24))/2), 1*95); // 6 letter at size 4 are the max, with 20 as margin is side, 180-20
-  
-  // // Button TV
-  // // canvas.drawRect(100, 600, 350, 150, 0xFFFF);
-  // canvas.setTextSize(4);
-  // canvas.drawString(buttons_names[0][2], 400, 95);
-
-  // // Button Ambilight TV
-  // canvas.setTextSize(4);
-  // canvas.drawString(buttons_names[1][0], 45, 190);
-
-  // // Button TV Play
-  // canvas.setTextSize(4);
-  // canvas.drawString(buttons_names[1][2], 400, 190);
-
-  // // Button TV Pause
-  // canvas.setTextSize(4);
-  // canvas.drawString(buttons_names[2][2], 390, 285);
-
-  // // Button Light Kitchen
-  // canvas.setTextSize(4);
-  // canvas.drawString(buttons_names[8][0], 10, 95*9);
 
   canvas.pushCanvas(0, 0, UPDATE_MODE_DU4);
 
@@ -114,7 +68,7 @@ void setup() {
   reconnect();
 
   // Publish a message to Home Assistant
-  publishMessage("Hello from M5Paper!");
+  publishMessage("M5Paper available");
 }
 
 void reconnect() {
@@ -140,17 +94,15 @@ void loop() {
   }
   client.loop();
 
+  // Physical buttons control
   if (M5.BtnL.wasPressed()){
-      // Publish a message to Home Assistant
-      publishMessage("ON");
+      publishMessage("UP");
   }
   if (M5.BtnP.wasPressed()){
-      // Publish a message to Home Assistant
-      publishMessage("ON-CAMERA");
+      publishMessage("CENTER");
   }
   if (M5.BtnR.wasPressed()){
-      // Publish a message to Home Assistant
-      publishMessage("TOGGLE-TV");
+      publishMessage("DOWN");
   }
 
   // General control
@@ -166,8 +118,7 @@ void loop() {
                     is_update   = true;
                     point[i][0] = FingerItem.x;
                     point[i][1] = FingerItem.y;
-                    canvas.fillRect(FingerItem.x - 50, FingerItem.y - 50, 100,
-                                    100, 15);
+                    // canvas.fillRect(FingerItem.x - 50, FingerItem.y - 50, 100, 100, 15);
                     Serial.printf("Finger ID:%d-->X: %d*C  Y: %d  Size: %d\r\n",
                                   FingerItem.id, FingerItem.x, FingerItem.y,
                                   FingerItem.size);
@@ -191,8 +142,10 @@ void loop() {
             }
         }
     }
-    // end test
+
   M5.BtnL.lastChange();
+  M5.BtnP.lastChange();
+  M5.BtnR.lastChange();
   M5.update();
   delay(100);
   }

@@ -23,15 +23,15 @@ const int buttons_matrix_coordinates[][4] = { // Pos X, Final X,  Pos Y,  Final 
 
 
 const String buttons_names[9][3] = { // Max 6 CAP letters with a font size of 4
-  {"LIGHTS", "CAMERA", "TELE"},
-  {"AMBI", "MOV", "PLAY"},
-  {"ENTER", "   ", "PAUSE"},
-  {"SALON", "CAMERA", "TELE"},
-  {"AMBI", "   ", "PLAY"},
-  {"   ", "   ", "PAUSE"},
-  {"LIGHTS", "CAMERA", "TELE"},
-  {"AMBI", "   ", "PLAY"},
-  {"KITCHEN", "   ", "PAUSE"}
+  {"LIGHTS", "CAMERA", "TELE"}, // 0 1 2
+  {"AMBI", "MOV", "PLAY"}, // 3 4 5
+  {"ENTER", "PORTAL", "PAUSE"}, // 6 7 8
+  {"SALON", "   ", "   "}, // 9 10 11
+  {"   ", "   ", "   "}, // 12 13 14
+  {"   ", "   ", "   "}, // 15 16 17
+  {"   ", "   ", "   "}, // 18 19 20
+  {"   ", "   ", "   "}, // 21 22 23
+  {"KITCHEN", "   ", "   "} // 24 25 26
 };
 
 // int buttons_matrix_coordinates[3][4] = {};
