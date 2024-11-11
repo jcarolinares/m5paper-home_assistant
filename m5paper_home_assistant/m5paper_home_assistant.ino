@@ -24,6 +24,8 @@ M5EPD_Canvas canvas(&M5.EPD);
 
 int point[2][2]; // Touch point matrix
 
+bool block_mode = false;
+
 void setup() {
 
   Serial.begin(115200);
@@ -43,7 +45,7 @@ void setup() {
   canvas.createCanvas(540, 960);
 
   // Background image
-  canvas.drawPngFile(SD, "/home-assistant.png",0,0); // the / is CRUTIAL
+  canvas.drawPngFile(SD, "/v2_home-assistant.png",0,0); // the / is CRUTIAL
   canvas.setTextSize(5);
   canvas.drawString("Home Control", 20, 10); // Tittle
   
@@ -55,7 +57,8 @@ void setup() {
     }
   }
 
-  canvas.pushCanvas(0, 0, UPDATE_MODE_DU4);
+  // canvas.pushCanvas(0, 0, UPDATE_MODE_DU4);
+  canvas.pushCanvas(0, 0, UPDATE_MODE_GC16); // Use this mode only for a high quality brachground
 
   // Connect to Wi-Fi
   WiFi.begin(ssid, password);
@@ -69,6 +72,40 @@ void setup() {
 
   // Publish a message to Home Assistant
   publishMessage("M5Paper available");
+}
+
+
+void draw_menu(){
+  
+  if (block_mode == false){
+
+    canvas.setTextSize(5);
+    canvas.createCanvas(170, 85);
+    canvas.drawString("<-UNBLOCKING", 170, 485); // Block
+    canvas.pushCanvas(0, 0, UPDATE_MODE_GL16);
+
+    // Background image
+    canvas.drawPngFile(SD, "/v2_home-assistant.png",0,0); // the / is CRUTIAL
+    canvas.setTextSize(5);
+    canvas.drawString("Home Control", 20, 10); // Tittle
+    // Button text autofill. Go to config.h to change the button names inside "button_names"
+    canvas.setTextSize(4);
+    for (int row=0; row<9; row++){
+      for (int col=0; col<3; col++){
+        canvas.drawString(buttons_names[row][col], 1+col*button_width+((button_width-(buttons_names[row][col].length()*24))/2), row*95+95); // 6 letter at size 4 are the max // FIXME, SO SLOW TO DRAW?
+      }
+    }
+    canvas.pushCanvas(0, 0, UPDATE_MODE_GC16); // // UPDATE_MODE_DU // UPDATE_MODE_GC16 - Use this mode only for a high quality brachground // UPDATE_MODE_GL16
+  }
+  else{
+    canvas.setTextSize(5);
+    canvas.createCanvas(170, 85);
+    canvas.drawString("BLOCKED->", 250, 485); // Block
+    // canvas.UpdateArea(buttons_matrix_coordinates[14][0], buttons_matrix_coordinates[14][2], buttons_matrix_coordinates[14][1], buttons_matrix_coordinates[14][3], UPDATE_MODE_DU4)
+    canvas.pushCanvas(0, 0, UPDATE_MODE_GL16);
+    // canvas.pushCanvas(buttons_matrix_coordinates[14][0], buttons_matrix_coordinates[14][2],UPDATE_MODE_GC16);
+    // canvas.pushCanvas()
+  }
 }
 
 void reconnect() {
@@ -98,8 +135,17 @@ void loop() {
   if (M5.BtnL.wasPressed()){
       publishMessage("UP");
   }
-  if (M5.BtnP.wasPressed()){
-      publishMessage("CENTER");
+  if (M5.BtnP.wasPressed()){ // Block Mode
+      // publishMessage("CENTER");
+      if (block_mode == false){
+        block_mode = true;
+        draw_menu();
+      }
+      else{
+        block_mode = false;
+        draw_menu();
+      }
+
   }
   if (M5.BtnR.wasPressed()){
       publishMessage("DOWN");
@@ -125,7 +171,7 @@ void loop() {
                     
                     for (int j = 0; j <= 26; j++) {
                       // Serial.println(j); // Debug
-                      if ((point[i][0] >buttons_matrix_coordinates[j][0] && point[i][0] <buttons_matrix_coordinates[j][1]) && (point[i][1] >buttons_matrix_coordinates[j][2] && point[i][1] <buttons_matrix_coordinates[j][3])){ // Button lights
+                      if (block_mode == false && (point[i][0] >buttons_matrix_coordinates[j][0] && point[i][0] <buttons_matrix_coordinates[j][1]) && (point[i][1] >buttons_matrix_coordinates[j][2] && point[i][1] <buttons_matrix_coordinates[j][3])){ // Button lights
                         String message = "BUTTON_";
                         message.concat(j);
                         publishMessage(message);

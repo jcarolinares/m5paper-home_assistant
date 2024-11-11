@@ -28,8 +28,8 @@ const String buttons_names[9][3] = { // Max 6 CAP letters with a font size of 4
   {"ENTER", "PORTAL", "PAUSE"}, // 6 7 8
   {"SALON", "   ", "MUTE"}, // 9 10 11
   {"   ", "   ", "   "}, // 12 13 14
-  {"   ", "   ", "   "}, // 15 16 17
-  {"   ", "   ", "TEMP"}, // 18 19 20
+  {"   ", "   ", "TEMP"}, // 15 16 17
+  {"   ", "   ", "YOUTUBE"}, // 18 19 20
   {"   ", "   ", "AMAZON"}, // 21 22 23
   {"KITCHEN", "   ", "NETFLIX"} // 24 25 26
 };
