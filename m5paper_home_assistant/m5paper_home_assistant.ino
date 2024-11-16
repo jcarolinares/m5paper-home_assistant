@@ -45,7 +45,7 @@ void setup() {
   canvas.createCanvas(540, 960);
 
   // Background image
-  canvas.drawPngFile(SD, "/v2_home-assistant.png",0,0); // the / is CRUTIAL
+  canvas.drawPngFile(SD, "/v3_home-assistant.png",0,0); // the / is CRUTIAL
   canvas.setTextSize(5);
   canvas.drawString("Home Control", 20, 10); // Tittle
   
@@ -85,7 +85,8 @@ void draw_menu(){
     canvas.pushCanvas(0, 0, UPDATE_MODE_GL16);
 
     // Background image
-    canvas.drawPngFile(SD, "/v2_home-assistant.png",0,0); // the / is CRUTIAL
+    canvas.drawPngFile(SD, "/v3_home-assistant.png",0,0); // the / is CRUTIAL
+    // canvas.drawJpgFile(SD, "/ac_control.jpg"); // FIXME Not working
     canvas.setTextSize(5);
     canvas.drawString("Home Control", 20, 10); // Tittle
     // Button text autofill. Go to config.h to change the button names inside "button_names"
@@ -95,7 +96,7 @@ void draw_menu(){
         canvas.drawString(buttons_names[row][col], 1+col*button_width+((button_width-(buttons_names[row][col].length()*24))/2), row*95+95); // 6 letter at size 4 are the max // FIXME, SO SLOW TO DRAW?
       }
     }
-    canvas.pushCanvas(0, 0, UPDATE_MODE_GC16); // // UPDATE_MODE_DU // UPDATE_MODE_GC16 - Use this mode only for a high quality brachground // UPDATE_MODE_GL16
+    canvas.pushCanvas(0, 0, UPDATE_MODE_GL16); // // UPDATE_MODE_DU // UPDATE_MODE_GC16 - Use this mode only for a high quality brachground // UPDATE_MODE_GL16
   }
   else{
     canvas.setTextSize(5);

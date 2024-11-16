@@ -26,22 +26,12 @@ const String buttons_names[9][3] = { // Max 6 CAP letters with a font size of 4
   {"LIGHTS", "CAMERA", "TELE"}, // 0 1 2
   {"AMBI", "MOV", "PLAY"}, // 3 4 5
   {"ENTER", "PORTAL", "PAUSE"}, // 6 7 8
-  {"SALON", "   ", "MUTE"}, // 9 10 11
-  {"   ", "   ", "   "}, // 12 13 14
-  {"   ", "   ", "TEMP"}, // 15 16 17
+  {"SALON", "TEMP", "MUTE"}, // 9 10 11
+  {"   ", "THERM", "   "}, // 12 13 14
+  {"   ", "   ", "   "}, // 15 16 17
   {"   ", "   ", "YOUTUBE"}, // 18 19 20
   {"   ", "   ", "AMAZON"}, // 21 22 23
   {"KITCHEN", "   ", "NETFLIX"} // 24 25 26
 };
-
-// int buttons_matrix_coordinates[3][4] = {};
-// void define_buttons_matrix(){
-//   for (int row = 0; row < 3; row++) {
-//       buttons_matrix_coordinates[row][0] = 0;
-//       buttons_matrix_coordinates[row][1] = 0+button_width;
-//       buttons_matrix_coordinates[row][2] = 60+row*button_heigh;
-//       buttons_matrix_coordinates[row][3] = 60+(row+1)*button_heigh;
-//   }
-// }
 
 #endif
