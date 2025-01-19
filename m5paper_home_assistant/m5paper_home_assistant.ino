@@ -8,7 +8,6 @@
 
 // Task lists
 // TODO Add Battery Status
-// TODO Add lock mode
 // End of task lists
 
 const char* mqtt_server = "192.168.1.33"; // Home Assistant IP address
