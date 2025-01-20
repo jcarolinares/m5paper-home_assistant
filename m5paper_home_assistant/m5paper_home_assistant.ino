@@ -47,7 +47,7 @@ void setup() {
   canvas.drawPngFile(SD, "/v3_home-assistant.png",0,0); // the / is CRUTIAL
   canvas.setTextSize(5);
   canvas.drawString("Home Control", 20, 10); // Tittle
-  
+
   // Button text autofill. Go to config.h to change the button names inside "button_names"
   canvas.setTextSize(4);
   for (int row=0; row<9; row++){

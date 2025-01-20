@@ -9,6 +9,7 @@ An M5Paper Home Assistant controller to manage your Home Assistant automation us
 
 * [M5Paper from M5Stack](https://shop.m5stack.com/products/m5paper-esp32-development-kit-v1-1-960x540-4-7-eink-display-235-ppi)
 * USB Type-C cable to program the M5Paper
+* MicroSD Card for the M5Stack device
 * [Home Assistant](https://www.home-assistant.io/)
 
 ### Arduino Setup
@@ -32,7 +33,9 @@ An M5Paper Home Assistant controller to manage your Home Assistant automation us
     const int mqtt_port = 1883;
     ```
 
-4. Make sure you have the M5Stack related firmware and libraries installed in your Arduino IDE following [https://docs.m5stack.com/en/arduino/arduino_board](https://docs.m5stack.com/en/arduino/arduino_board) and [https://docs.m5stack.com/en/arduino/m5paper/program](https://docs.m5stack.com/en/arduino/m5paper/program) tutorials.
+4. Take the image **v3_home-assistant.png** from this repository and **put it inside your micro SD card**. Now put the micro SD card inside your M5Paper. The device needs it to load the menu as a background image.
+
+5. Make sure you have the M5Stack related firmware and libraries installed in your Arduino IDE following [https://docs.m5stack.com/en/arduino/arduino_board](https://docs.m5stack.com/en/arduino/arduino_board) and [https://docs.m5stack.com/en/arduino/m5paper/program](https://docs.m5stack.com/en/arduino/m5paper/program) tutorials.
 
 ### Home Assistant Setup
 
@@ -64,15 +67,15 @@ Inside the Arduino IDE, open the file of the project **config.h**, there you wil
 
 ``` arduino
 const String buttons_names[9][3] = { // Max 6 CAP letters with a font size of 4
-  {"LIGHTS", "CAMERA", "TELE"}, // 0 1 2
-  {"AMBI", "MOV", "PLAY"}, // 3 4 5
-  {"HALL", "PORTAL", "PAUSE"}, // 6 7 8
-  {"SALON", "TEMP", "MUTE"}, // 9 10 11
-  {"LAMP", "THERM", "TIKTOK"}, // 12 13 14
-  {"XBOX", "SPOTIFY", "DISNEY"}, // 15 16 17
+  {"LIGHTS", "CAMERA", "TELE"},     // 0 1 2
+  {"AMBI", "MOV", "PLAY"},          // 3 4 5
+  {"HALL", "PORTAL", "PAUSE"},      // 6 7 8
+  {"SALON", "TEMP", "MUTE"},        // 9 10 11
+  {"LAMP", "THERM", "TIKTOK"},      // 12 13 14
+  {"XBOX", "SPOTIFY", "DISNEY"},    // 15 16 17
   {"SWITCH", "LIVE TV", "YOUTUBE"}, // 18 19 20
-  {"NEWS", "MAX", "PRIME"}, // 21 22 23
-  {"KITCHEN", "DEBUG", "NETFLIX"} // 24 25 26
+  {"NEWS", "MAX", "PRIME"},         // 21 22 23
+  {"KITCHEN", "DEBUG", "NETFLIX"}   // 24 25 26
 };
 ```
 
