@@ -1,0 +1,270 @@
+alias: M5Paper-Controller
+description: M5Paper Controller general automation
+triggers:
+  - trigger: mqtt
+    topic: home/m5paper/status
+conditions: []
+actions:
+  - choose:
+      - conditions:
+          - condition: template
+            value_template: "{{ trigger.payload == 'BUTTON_0' }}"
+        sequence:
+          - action: light.toggle
+            metadata: {}
+            data: {}
+            target:
+              area_id: salon
+      - conditions:
+          - condition: template
+            value_template: "{{ trigger.payload == 'BUTTON_1' }}"
+        sequence:
+          - action: light.toggle
+            metadata: {}
+            data: {}
+            target:
+              area_id: salon
+      - conditions:
+          - condition: template
+            value_template: "{{ trigger.payload == 'BUTTON_2' }}"
+        sequence:
+          - action: light.toggle
+            metadata: {}
+            data: {}
+            target:
+              area_id: salon
+      - conditions:
+          - condition: template
+            value_template: "{{ trigger.payload == 'BUTTON_3' }}"
+        sequence:
+          - action: light.toggle
+            metadata: {}
+            data: {}
+            target:
+              area_id: salon
+      - conditions:
+          - condition: template
+            value_template: "{{ trigger.payload == 'BUTTON_4' }}"
+        sequence:
+          - action: light.toggle
+            metadata: {}
+            data: {}
+            target:
+              area_id: salon
+      - conditions:
+          - condition: template
+            value_template: "{{ trigger.payload == 'BUTTON_5' }}"
+        sequence:
+          - action: light.toggle
+            metadata: {}
+            data: {}
+            target:
+              area_id: salon
+      - conditions:
+          - condition: template
+            value_template: "{{ trigger.payload == 'BUTTON_6' }}"
+        sequence:
+          - action: light.toggle
+            metadata: {}
+            data: {}
+            target:
+              area_id: salon
+      - conditions:
+          - condition: template
+            value_template: "{{ trigger.payload == 'BUTTON_7' }}"
+        sequence:
+          - action: light.toggle
+            metadata: {}
+            data: {}
+            target:
+              area_id: salon
+      - conditions:
+          - condition: template
+            value_template: "{{ trigger.payload == 'BUTTON_8' }}"
+        sequence:
+          - action: light.toggle
+            metadata: {}
+            data: {}
+            target:
+              area_id: salon
+      - conditions:
+          - condition: template
+            value_template: "{{ trigger.payload == 'BUTTON_9' }}"
+        sequence:
+          - action: light.toggle
+            metadata: {}
+            data: {}
+            target:
+              area_id: salon
+      - conditions:
+          - condition: template
+            value_template: "{{ trigger.payload == 'UP' }}"
+        sequence:
+          - action: light.toggle
+            metadata: {}
+            data: {}
+            target:
+              area_id: salon
+      - conditions:
+          - condition: template
+            value_template: "{{ trigger.payload == 'DOWN' }}"
+        sequence:
+          - action: light.toggle
+            metadata: {}
+            data: {}
+            target:
+              area_id: salon
+      - conditions:
+          - condition: template
+            value_template: "{{ trigger.payload == 'BUTTON_10' }}"
+        sequence:
+          - action: light.toggle
+            metadata: {}
+            data: {}
+            target:
+              area_id: salon
+      - conditions:
+          - condition: template
+            value_template: "{{ trigger.payload == 'BUTTON_11' }}"
+        sequence:
+          - action: light.toggle
+            metadata: {}
+            data: {}
+            target:
+              area_id: salon
+      - conditions:
+          - condition: template
+            value_template: "{{ trigger.payload == 'BUTTON_12' }}"
+        sequence:
+          - action: light.toggle
+            metadata: {}
+            data: {}
+            target:
+              area_id: salon
+      - conditions:
+          - condition: template
+            value_template: "{{ trigger.payload == 'BUTTON_13' }}"
+        sequence:
+          - action: light.toggle
+            metadata: {}
+            data: {}
+            target:
+              area_id: salon
+      - conditions:
+          - condition: template
+            value_template: "{{ trigger.payload == 'BUTTON_14' }}"
+        sequence:
+          - action: light.toggle
+            metadata: {}
+            data: {}
+            target:
+              area_id: salon
+      - conditions:
+          - condition: template
+            value_template: "{{ trigger.payload == 'BUTTON_15' }}"
+        sequence:
+          - action: light.toggle
+            metadata: {}
+            data: {}
+            target:
+              area_id: salon
+      - conditions:
+          - condition: template
+            value_template: "{{ trigger.payload == 'BUTTON_16' }}"
+        sequence:
+          - action: light.toggle
+            metadata: {}
+            data: {}
+            target:
+              area_id: salon
+      - conditions:
+          - condition: template
+            value_template: "{{ trigger.payload == 'BUTTON_17' }}"
+        sequence:
+          - action: light.toggle
+            metadata: {}
+            data: {}
+            target:
+              area_id: salon
+      - conditions:
+          - condition: template
+            value_template: "{{ trigger.payload == 'BUTTON_18' }}"
+        sequence:
+          - action: light.toggle
+            metadata: {}
+            data: {}
+            target:
+              area_id: salon
+      - conditions:
+          - condition: template
+            value_template: "{{ trigger.payload == 'BUTTON_19' }}"
+        sequence:
+          - action: light.toggle
+            metadata: {}
+            data: {}
+            target:
+              area_id: salon
+      - conditions:
+          - condition: template
+            value_template: "{{ trigger.payload == 'BUTTON_20' }}"
+        sequence:
+          - action: light.toggle
+            metadata: {}
+            data: {}
+            target:
+              area_id: salon
+      - conditions:
+          - condition: template
+            value_template: "{{ trigger.payload == 'BUTTON_21' }}"
+        sequence:
+          - action: light.toggle
+            metadata: {}
+            data: {}
+            target:
+              area_id: salon
+      - conditions:
+          - condition: template
+            value_template: "{{ trigger.payload == 'BUTTON_22' }}"
+        sequence:
+          - action: light.toggle
+            metadata: {}
+            data: {}
+            target:
+              area_id: salon
+      - conditions:
+          - condition: template
+            value_template: "{{ trigger.payload == 'BUTTON_23' }}"
+        sequence:
+          - action: light.toggle
+            metadata: {}
+            data: {}
+            target:
+              area_id: salon
+      - conditions:
+          - condition: template
+            value_template: "{{ trigger.payload == 'BUTTON_24'}}"
+        sequence:
+          - action: light.toggle
+            metadata: {}
+            data: {}
+            target:
+              area_id: salon
+      - conditions:
+          - condition: template
+            value_template: "{{ trigger.payload == 'BUTTON_25' }}"
+        sequence:
+          - action: light.toggle
+            metadata: {}
+            data: {}
+            target:
+              area_id: salon
+      - conditions:
+          - condition: template
+            value_template: "{{ trigger.payload == 'BUTTON_26' }}"
+        sequence:
+          - action: light.toggle
+            metadata: {}
+            data: {}
+            target:
+              area_id: salon
+mode: single

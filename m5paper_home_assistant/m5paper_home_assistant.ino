@@ -168,7 +168,7 @@ void loop() {
                     Serial.printf("Finger ID:%d-->X: %d*C  Y: %d  Size: %d\r\n",
                                   FingerItem.id, FingerItem.x, FingerItem.y,
                                   FingerItem.size);
-                    
+
                     for (int j = 0; j <= 26; j++) {
                       // Serial.println(j); // Debug
                       if (block_mode == false && (point[i][0] >buttons_matrix_coordinates[j][0] && point[i][0] <buttons_matrix_coordinates[j][1]) && (point[i][1] >buttons_matrix_coordinates[j][2] && point[i][1] <buttons_matrix_coordinates[j][3])){ // Button lights
